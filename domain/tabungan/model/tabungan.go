@@ -16,6 +16,16 @@ type CreateRekeningRequest struct {
 	NoHandphone string `json:"no_handphone"`
 }
 
+type SavingRekeningRequest struct {
+	NoRekening int64 `json:"no_rekening"`
+	Saldo      int64 `json:"saldo"`
+}
+
+type WitdrawalRekeningRequest struct {
+	NoRekening int64 `json:"no_rekening"`
+	Saldo      int64 `json:"saldo"`
+}
+
 type NasabahJSON struct {
 	NoRekening int64 `json:"no_rekening"`
 }

@@ -14,3 +14,8 @@ func GenerateNoRekening(request model.CreateRekeningRequest) (noRekening int64) 
 	noRekening = int64(intNoRek)
 	return
 }
+
+func StrToInt64(s string) (i int64) {
+	str, _ := strconv.Atoi(s)
+	return int64(str)
+}

@@ -35,6 +35,9 @@ func routerGroupV1(app *fiber.App, handler handler) {
 		tabungan := v1.Group("/tabungan")
 		{
 			tabungan.Post("/daftar", handler.tabunganHandler.RegisterHandler)
+			tabungan.Post("/tabung", handler.tabunganHandler.SavingHandler)
+			tabungan.Post("/tarik", handler.tabunganHandler.WitdrawalHandler)
+			tabungan.Get("/saldo/:no_rekening", handler.tabunganHandler.BalanceHandler)
 		}
 	}
 }

@@ -15,6 +15,9 @@ import (
 
 type TabunganFeature interface {
 	CreateRekeningFeature(ctx context.Context, request model.CreateRekeningRequest) (response model.NasabahJSON, err error)
+	SavingFeature(ctx context.Context, request model.SavingRekeningRequest) (response model.SaldoJSON, err error)
+	WitdrawalFeature(ctx context.Context, request model.WitdrawalRekeningRequest) (response model.SaldoJSON, err error)
+	BalanceFeature(ctx context.Context, noRekening string) (response model.SaldoJSON, err error)
 }
 
 type tabunganFeature struct {
@@ -63,6 +66,83 @@ func (t *tabunganFeature) CreateRekeningFeature(ctx context.Context, request mod
 
 	response = model.NasabahJSON{
 		NoRekening: data.NoRekening,
+	}
+	return
+}
+
+func (t *tabunganFeature) SavingFeature(ctx context.Context, request model.SavingRekeningRequest) (response model.SaldoJSON, err error) {
+	// Get Data
+	getNorek, _ := t.tabunganRepository.GetByNoRekening(ctx, request.NoRekening)
+
+	if getNorek == nil {
+		err = Error.New(ctx, shared_constant.ErrGeneral, constant.ErrNoRekeningNotFound, errors.New(fmt.Sprintf(constant.ErrNoRekeningNotFoundWithNoRekening, request.NoRekening)))
+		return
+	}
+
+	// Fill Data
+	data := model.Rekening{
+		ID:         getNorek.ID,
+		NoRekening: getNorek.NoRekening,
+		Saldo:      getNorek.Saldo + request.Saldo,
+	}
+
+	err = t.tabunganRepository.UpdateSaldoRepository(ctx, &data)
+	if err != nil {
+		return
+	}
+
+	response = model.SaldoJSON{
+		NoRekening: data.NoRekening,
+		Saldo:      data.Saldo,
+	}
+	return
+}
+
+func (t *tabunganFeature) WitdrawalFeature(ctx context.Context, request model.WitdrawalRekeningRequest) (response model.SaldoJSON, err error) {
+	// Get Data
+	getNorek, _ := t.tabunganRepository.GetByNoRekening(ctx, request.NoRekening)
+
+	if getNorek == nil {
+		err = Error.New(ctx, shared_constant.ErrGeneral, constant.ErrNoRekeningNotFound, errors.New(fmt.Sprintf(constant.ErrNoRekeningNotFoundWithNoRekening, request.NoRekening)))
+		return
+	}
+
+	// Validate Saldo
+	if request.Saldo > getNorek.Saldo {
+		err = Error.New(ctx, shared_constant.ErrGeneral, constant.ErrSaldo, errors.New(fmt.Sprint(constant.ErrSaldo)))
+		return
+	}
+
+	// Fill Data
+	data := model.Rekening{
+		ID:         getNorek.ID,
+		NoRekening: getNorek.NoRekening,
+		Saldo:      getNorek.Saldo - request.Saldo,
+	}
+
+	err = t.tabunganRepository.UpdateSaldoRepository(ctx, &data)
+	if err != nil {
+		return
+	}
+
+	response = model.SaldoJSON{
+		NoRekening: data.NoRekening,
+		Saldo:      data.Saldo,
+	}
+	return
+}
+
+func (t *tabunganFeature) BalanceFeature(ctx context.Context, noRekening string) (response model.SaldoJSON, err error) {
+	getNorek, _ := t.tabunganRepository.GetByNoRekening(ctx, helper.StrToInt64(noRekening))
+
+	if getNorek == nil {
+		err = Error.New(ctx, shared_constant.ErrGeneral, constant.ErrNoRekeningNotFound, errors.New(fmt.Sprintf(constant.ErrNoRekeningNotFoundWithNoRekening, noRekening)))
+		return
+	}
+
+	response = model.SaldoJSON{
+		NoRekening: getNorek.NoRekening,
+		Saldo:      getNorek.Saldo,
 	}
 	return
 }

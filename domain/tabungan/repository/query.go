@@ -11,6 +11,12 @@ const (
 		VALUES ($1, $2, $3, $4, $5)
 	`
 
+	UpdateSaldoQuery = `
+		UPDATE tb_rekening SET
+			saldo = $2
+		WHERE id = $1;
+	`
+
 	GetRekeningQuery = `
 		SELECT id,
 			nama, 
