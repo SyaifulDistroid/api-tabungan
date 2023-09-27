@@ -1,0 +1,825 @@
+{
+	"info": {
+		"_postman_id": "0dfced60-fc5c-4509-8741-996e4255267d",
+		"name": "Tabungan",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "23777577"
+	},
+	"item": [
+		{
+			"name": "Ping",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODk4Njc3MTgsImlkZW50aXR5dXNlciI6IjA2MjAyMjQ2MjAyMjA4MThEMjA3MTAiLCJvcmlnX2lhdCI6MTY4OTg2NDExOCwidG9rZW5pZCI6IjIwNzEwU0FORElBV0VCMjAyMy0wNy0yMCAxNDo0MTo1OC4wNTA0MjA5NjQgKzAwMDAgVVRDIG09KzUyODA0NTYuNzg5NDU4NTM0IiwidXNlcmlkIjoiMjA3MTAifQ.xZV1hyDrRBAYCj2ZtiWA9K_5LeIDDHv2aERlduaLXW8"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8787/v1/ping"
+			},
+			"response": [
+				{
+					"name": "Ping",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8787/v1/ping"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 27 Sep 2023 09:58:21 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "110"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"remark\": \"success\",\n    \"data\": \"pong!\",\n    \"xid\": \"be0d9b11-37b8-431e-b19e-e0c590d169b3\",\n    \"code\": 200\n}"
+				}
+			]
+		},
+		{
+			"name": "Health Check",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODk4Njc3MTgsImlkZW50aXR5dXNlciI6IjA2MjAyMjQ2MjAyMjA4MThEMjA3MTAiLCJvcmlnX2lhdCI6MTY4OTg2NDExOCwidG9rZW5pZCI6IjIwNzEwU0FORElBV0VCMjAyMy0wNy0yMCAxNDo0MTo1OC4wNTA0MjA5NjQgKzAwMDAgVVRDIG09KzUyODA0NTYuNzg5NDU4NTM0IiwidXNlcmlkIjoiMjA3MTAifQ.xZV1hyDrRBAYCj2ZtiWA9K_5LeIDDHv2aERlduaLXW8"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8787/v1/health-check"
+			},
+			"response": [
+				{
+					"name": "Health Check",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8787/v1/health-check"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 27 Sep 2023 09:58:31 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "225"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"remark\": \"success\",\n    \"data\": {\n        \"app\": {\n            \"name\": \"api-tabungan\",\n            \"version\": \"0.1.0\"\n        },\n        \"database\": {\n            \"driver\": \"postgres\",\n            \"status\": \"connected\"\n        },\n        \"status\": \"healthy\"\n    },\n    \"xid\": \"37f3bc32-4f41-449e-912b-ba55b390099f\",\n    \"code\": 200\n}"
+				}
+			]
+		},
+		{
+			"name": "Daftar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODk4Njc3MTgsImlkZW50aXR5dXNlciI6IjA2MjAyMjQ2MjAyMjA4MThEMjA3MTAiLCJvcmlnX2lhdCI6MTY4OTg2NDExOCwidG9rZW5pZCI6IjIwNzEwU0FORElBV0VCMjAyMy0wNy0yMCAxNDo0MTo1OC4wNTA0MjA5NjQgKzAwMDAgVVRDIG09KzUyODA0NTYuNzg5NDU4NTM0IiwidXNlcmlkIjoiMjA3MTAifQ.xZV1hyDrRBAYCj2ZtiWA9K_5LeIDDHv2aERlduaLXW8"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nama\": \"saya\",\r\n    \"nik\": \"346453332\",\r\n    \"no_handphone\": \"086287284349\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8787/v1/tabungan/daftar"
+			},
+			"response": [
+				{
+					"name": "Daftar Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nama\": \"saya\",\r\n    \"nik\": \"34645332\",\r\n    \"no_handphone\": \"086287284349\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8787/v1/tabungan/daftar"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 27 Sep 2023 09:56:26 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "128"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"remark\": \"success\",\n    \"data\": {\n        \"no_rekening\": 564272716\n    },\n    \"xid\": \"7e50dd52-ee48-4560-b418-6304d6c3ad30\",\n    \"code\": 200\n}"
+				},
+				{
+					"name": "Daftar Failed NIK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nama\": \"saya\",\r\n    \"nik\": \"34645332\",\r\n    \"no_handphone\": \"086287284349\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8787/v1/tabungan/daftar"
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 27 Sep 2023 09:57:03 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "121"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"error\",\n    \"data\": {\n        \"remark\": \"nik 34645332 already exist\"\n    },\n    \"xid\": \"57028b67-a4e8-4a15-b0c9-27347105b76e\",\n    \"code\": 400\n}"
+				},
+				{
+					"name": "Daftar Failed HP",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nama\": \"saya\",\r\n    \"nik\": \"346453332\",\r\n    \"no_handphone\": \"086287284349\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8787/v1/tabungan/daftar"
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 27 Sep 2023 09:57:34 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "134"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"error\",\n    \"data\": {\n        \"remark\": \"no handphone 086287284349 already exist\"\n    },\n    \"xid\": \"692ab19e-8da4-4f0f-9b9d-4010ae246747\",\n    \"code\": 400\n}"
+				}
+			]
+		},
+		{
+			"name": "Tabung",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODk4Njc3MTgsImlkZW50aXR5dXNlciI6IjA2MjAyMjQ2MjAyMjA4MThEMjA3MTAiLCJvcmlnX2lhdCI6MTY4OTg2NDExOCwidG9rZW5pZCI6IjIwNzEwU0FORElBV0VCMjAyMy0wNy0yMCAxNDo0MTo1OC4wNTA0MjA5NjQgKzAwMDAgVVRDIG09KzUyODA0NTYuNzg5NDU4NTM0IiwidXNlcmlkIjoiMjA3MTAifQ.xZV1hyDrRBAYCj2ZtiWA9K_5LeIDDHv2aERlduaLXW8"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"no_rekening\": 1342739153,\r\n    \"nominal\": 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8787/v1/tabungan/tabung"
+			},
+			"response": [
+				{
+					"name": "Tabung Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"no_rekening\": 134273915,\r\n    \"nominal\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8787/v1/tabungan/tabung"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 27 Sep 2023 09:59:03 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "142"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"remark\": \"success\",\n    \"data\": {\n        \"no_rekening\": 134273915,\n        \"saldo\": 21700\n    },\n    \"xid\": \"2e60545d-28f3-425a-946d-6c6e62d6d2e3\",\n    \"code\": 200\n}"
+				},
+				{
+					"name": "Tabung Failed",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"no_rekening\": 1342739153,\r\n    \"nominal\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8787/v1/tabungan/tabung"
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 27 Sep 2023 09:59:23 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "127"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"error\",\n    \"data\": {\n        \"remark\": \"no rekening 1342739153 not found\"\n    },\n    \"xid\": \"2ff3df19-7165-4e8a-b83a-339320648d74\",\n    \"code\": 400\n}"
+				}
+			]
+		},
+		{
+			"name": "Tarik",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODk4Njc3MTgsImlkZW50aXR5dXNlciI6IjA2MjAyMjQ2MjAyMjA4MThEMjA3MTAiLCJvcmlnX2lhdCI6MTY4OTg2NDExOCwidG9rZW5pZCI6IjIwNzEwU0FORElBV0VCMjAyMy0wNy0yMCAxNDo0MTo1OC4wNTA0MjA5NjQgKzAwMDAgVVRDIG09KzUyODA0NTYuNzg5NDU4NTM0IiwidXNlcmlkIjoiMjA3MTAifQ.xZV1hyDrRBAYCj2ZtiWA9K_5LeIDDHv2aERlduaLXW8"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"no_rekening\": 134273915,\r\n    \"nominal\": 500000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8787/v1/tabungan/tarik"
+			},
+			"response": [
+				{
+					"name": "Tabung Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"no_rekening\": 134273915,\r\n    \"nominal\": 500\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8787/v1/tabungan/tarik"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 27 Sep 2023 10:00:17 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "142"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"remark\": \"success\",\n    \"data\": {\n        \"no_rekening\": 134273915,\n        \"saldo\": 20700\n    },\n    \"xid\": \"b478338a-8b5c-4fd4-af7c-861abf1d484d\",\n    \"code\": 200\n}"
+				},
+				{
+					"name": "Tabung Failed Rekening",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"no_rekening\": 14273915,\r\n    \"nominal\": 500\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8787/v1/tabungan/tarik"
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 27 Sep 2023 10:00:39 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "125"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"error\",\n    \"data\": {\n        \"remark\": \"no rekening 14273915 not found\"\n    },\n    \"xid\": \"3c28aae0-c348-4d3f-a14c-2bf283195cd5\",\n    \"code\": 400\n}"
+				},
+				{
+					"name": "Tabung Failed Saldo Tidak Cukup",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"no_rekening\": 134273915,\r\n    \"nominal\": 500000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8787/v1/tabungan/tarik"
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 27 Sep 2023 10:01:08 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "122"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"error\",\n    \"data\": {\n        \"remark\": \"the balance is insufficient\"\n    },\n    \"xid\": \"4018cd29-884a-4d17-b147-bb3adc44dae2\",\n    \"code\": 400\n}"
+				}
+			]
+		},
+		{
+			"name": "Saldo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODk4Njc3MTgsImlkZW50aXR5dXNlciI6IjA2MjAyMjQ2MjAyMjA4MThEMjA3MTAiLCJvcmlnX2lhdCI6MTY4OTg2NDExOCwidG9rZW5pZCI6IjIwNzEwU0FORElBV0VCMjAyMy0wNy0yMCAxNDo0MTo1OC4wNTA0MjA5NjQgKzAwMDAgVVRDIG09KzUyODA0NTYuNzg5NDU4NTM0IiwidXNlcmlkIjoiMjA3MTAifQ.xZV1hyDrRBAYCj2ZtiWA9K_5LeIDDHv2aERlduaLXW8"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8787/v1/tabungan/saldo/:no_rekening",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8787",
+					"path": [
+						"v1",
+						"tabungan",
+						"saldo",
+						":no_rekening"
+					],
+					"variable": [
+						{
+							"key": "no_rekening",
+							"value": "13427391"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Saldo Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8787/v1/tabungan/saldo/:no_rekening",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8787",
+							"path": [
+								"v1",
+								"tabungan",
+								"saldo",
+								":no_rekening"
+							],
+							"variable": [
+								{
+									"key": "no_rekening",
+									"value": "134273915"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 27 Sep 2023 09:12:30 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "141"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"remark\": \"success\",\n    \"data\": {\n        \"no_rekening\": 134273915,\n        \"saldo\": 1000\n    },\n    \"xid\": \"c3f09eaa-38c3-4599-9469-d21a2c7eb0eb\",\n    \"code\": 200\n}"
+				},
+				{
+					"name": "Saldo Failed",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8787/v1/tabungan/saldo/:no_rekening",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8787",
+							"path": [
+								"v1",
+								"tabungan",
+								"saldo",
+								":no_rekening"
+							],
+							"variable": [
+								{
+									"key": "no_rekening",
+									"value": "13427391"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 27 Sep 2023 10:01:43 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "125"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"error\",\n    \"data\": {\n        \"remark\": \"no rekening 13427391 not found\"\n    },\n    \"xid\": \"e47ac359-32f4-4c67-a176-cf257ccdecea\",\n    \"code\": 400\n}"
+				}
+			]
+		},
+		{
+			"name": "Mutasi",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODk4Njc3MTgsImlkZW50aXR5dXNlciI6IjA2MjAyMjQ2MjAyMjA4MThEMjA3MTAiLCJvcmlnX2lhdCI6MTY4OTg2NDExOCwidG9rZW5pZCI6IjIwNzEwU0FORElBV0VCMjAyMy0wNy0yMCAxNDo0MTo1OC4wNTA0MjA5NjQgKzAwMDAgVVRDIG09KzUyODA0NTYuNzg5NDU4NTM0IiwidXNlcmlkIjoiMjA3MTAifQ.xZV1hyDrRBAYCj2ZtiWA9K_5LeIDDHv2aERlduaLXW8"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8787/v1/tabungan/mutasi/:no_rekening",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8787",
+					"path": [
+						"v1",
+						"tabungan",
+						"mutasi",
+						":no_rekening"
+					],
+					"variable": [
+						{
+							"key": "no_rekening",
+							"value": "13427391"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Mutasi Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8787/v1/tabungan/mutasi/:no_rekening",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8787",
+							"path": [
+								"v1",
+								"tabungan",
+								"mutasi",
+								":no_rekening"
+							],
+							"variable": [
+								{
+									"key": "no_rekening",
+									"value": "134273915"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 27 Sep 2023 09:55:14 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "760"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"remark\": \"success\",\n    \"data\": [\n        {\n            \"kode_transaksi\": \"D\",\n            \"nominal\": 500,\n            \"saldo\": 21500,\n            \"waktu\": \"2023-09-27T16:41:34.882157+07:00\"\n        },\n        {\n            \"kode_transaksi\": \"C\",\n            \"nominal\": 100,\n            \"saldo\": 22000,\n            \"waktu\": \"2023-09-27T16:41:28.565953+07:00\"\n        },\n        {\n            \"kode_transaksi\": \"C\",\n            \"nominal\": 1900,\n            \"saldo\": 21900,\n            \"waktu\": \"2023-09-27T16:41:15.374234+07:00\"\n        },\n        {\n            \"kode_transaksi\": \"D\",\n            \"nominal\": 10000,\n            \"saldo\": 20000,\n            \"waktu\": \"2023-09-27T16:39:26.217735+07:00\"\n        },\n        {\n            \"kode_transaksi\": \"C\",\n            \"nominal\": 10000,\n            \"saldo\": 10000,\n            \"waktu\": \"2023-09-27T16:39:24.507152+07:00\"\n        },\n        {\n            \"kode_transaksi\": \"C\",\n            \"nominal\": 500,\n            \"saldo\": 0,\n            \"waktu\": \"2023-09-27T16:39:17.53468+07:00\"\n        },\n        {\n            \"kode_transaksi\": \"C\",\n            \"nominal\": 500,\n            \"saldo\": 500,\n            \"waktu\": \"2023-09-27T16:39:11.036193+07:00\"\n        }\n    ],\n    \"xid\": \"d527b90b-c7a1-45ce-ada6-3baddae33e2e\",\n    \"code\": 200\n}"
+				},
+				{
+					"name": "Mutasi Failed",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8787/v1/tabungan/mutasi/:no_rekening",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8787",
+							"path": [
+								"v1",
+								"tabungan",
+								"mutasi",
+								":no_rekening"
+							],
+							"variable": [
+								{
+									"key": "no_rekening",
+									"value": "13427391"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 27 Sep 2023 10:03:32 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "125"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"error\",\n    \"data\": {\n        \"remark\": \"no rekening 13427391 not found\"\n    },\n    \"xid\": \"f1b020ee-14ac-4b0d-b15d-dd5776bc4bed\",\n    \"code\": 400\n}"
+				}
+			]
+		}
+	]
+}
