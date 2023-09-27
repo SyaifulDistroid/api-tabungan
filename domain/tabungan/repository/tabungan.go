@@ -15,6 +15,8 @@ type TabunganRepository interface {
 	GetByNoHandphone(ctx context.Context, hp string) (rekening *model.Rekening, err error)
 	GetByNoRekening(ctx context.Context, norek int64) (rekening *model.Rekening, err error)
 	UpdateSaldoRepository(ctx context.Context, rek *model.Rekening) (err error)
+	CreateHistoryRepository(ctx context.Context, rek *model.Mutasi) (err error)
+	GetHistoryRepository(ctx context.Context, norek int64) (rekening []*model.Mutasi, err error)
 }
 
 type tabunganRepository struct {
@@ -98,6 +100,30 @@ func (t *tabunganRepository) UpdateSaldoRepository(ctx context.Context, rek *mod
 	)
 	if err != nil {
 		return
+	}
+	return
+}
+
+func (t *tabunganRepository) CreateHistoryRepository(ctx context.Context, rek *model.Mutasi) (err error) {
+	_, err = t.database.ExecContext(ctx, CreateHistoryQuery,
+		rek.NoRekening,
+		rek.KodeTransaksi,
+		rek.Nominal,
+		rek.Saldo,
+		rek.CreatedBy,
+	)
+	if err != nil {
+		return
+	}
+	return
+}
+
+func (t *tabunganRepository) GetHistoryRepository(ctx context.Context, norek int64) (rekening []*model.Mutasi, err error) {
+	err = t.database.SelectContext(ctx, &rekening, GetHistoryQuery, norek)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return
+		}
 	}
 	return
 }

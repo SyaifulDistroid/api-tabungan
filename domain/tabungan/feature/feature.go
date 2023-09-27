@@ -18,6 +18,7 @@ type TabunganFeature interface {
 	SavingFeature(ctx context.Context, request model.SavingRekeningRequest) (response model.SaldoJSON, err error)
 	WitdrawalFeature(ctx context.Context, request model.WitdrawalRekeningRequest) (response model.SaldoJSON, err error)
 	BalanceFeature(ctx context.Context, noRekening string) (response model.SaldoJSON, err error)
+	HistoryFeature(ctx context.Context, noRekening string) (response []model.MutasiJSON, err error)
 }
 
 type tabunganFeature struct {
@@ -83,10 +84,24 @@ func (t *tabunganFeature) SavingFeature(ctx context.Context, request model.Savin
 	data := model.Rekening{
 		ID:         getNorek.ID,
 		NoRekening: getNorek.NoRekening,
-		Saldo:      getNorek.Saldo + request.Saldo,
+		Saldo:      getNorek.Saldo + request.Nominal,
 	}
 
 	err = t.tabunganRepository.UpdateSaldoRepository(ctx, &data)
+	if err != nil {
+		return
+	}
+
+	// Fill Data Mutasi
+	mutasi := model.Mutasi{
+		NoRekening:    data.NoRekening,
+		KodeTransaksi: constant.CREDIT,
+		Nominal:       request.Nominal,
+		Saldo:         data.Saldo,
+		CreatedBy:     constant.SYSTEM,
+	}
+
+	err = t.tabunganRepository.CreateHistoryRepository(ctx, &mutasi)
 	if err != nil {
 		return
 	}
@@ -108,7 +123,7 @@ func (t *tabunganFeature) WitdrawalFeature(ctx context.Context, request model.Wi
 	}
 
 	// Validate Saldo
-	if request.Saldo > getNorek.Saldo {
+	if request.Nominal > getNorek.Saldo {
 		err = Error.New(ctx, shared_constant.ErrGeneral, constant.ErrSaldo, errors.New(fmt.Sprint(constant.ErrSaldo)))
 		return
 	}
@@ -117,10 +132,24 @@ func (t *tabunganFeature) WitdrawalFeature(ctx context.Context, request model.Wi
 	data := model.Rekening{
 		ID:         getNorek.ID,
 		NoRekening: getNorek.NoRekening,
-		Saldo:      getNorek.Saldo - request.Saldo,
+		Saldo:      getNorek.Saldo - request.Nominal,
 	}
 
 	err = t.tabunganRepository.UpdateSaldoRepository(ctx, &data)
+	if err != nil {
+		return
+	}
+
+	// Fill Data Mutasi
+	mutasi := model.Mutasi{
+		NoRekening:    data.NoRekening,
+		KodeTransaksi: constant.DEBIT,
+		Nominal:       request.Nominal,
+		Saldo:         data.Saldo,
+		CreatedBy:     constant.SYSTEM,
+	}
+
+	err = t.tabunganRepository.CreateHistoryRepository(ctx, &mutasi)
 	if err != nil {
 		return
 	}
@@ -143,6 +172,28 @@ func (t *tabunganFeature) BalanceFeature(ctx context.Context, noRekening string)
 	response = model.SaldoJSON{
 		NoRekening: getNorek.NoRekening,
 		Saldo:      getNorek.Saldo,
+	}
+	return
+}
+
+func (t *tabunganFeature) HistoryFeature(ctx context.Context, noRekening string) (response []model.MutasiJSON, err error) {
+	getData, err := t.tabunganRepository.GetHistoryRepository(ctx, helper.StrToInt64(noRekening))
+	if err != nil {
+		return
+	}
+
+	if getData == nil {
+		err = Error.New(ctx, shared_constant.ErrGeneral, constant.ErrNoRekeningNotFound, errors.New(fmt.Sprintf(constant.ErrNoRekeningNotFoundWithNoRekening, noRekening)))
+		return
+	}
+
+	for _, v := range getData {
+		response = append(response, model.MutasiJSON{
+			KodeTransaksi: v.KodeTransaksi,
+			Nominal:       v.Nominal,
+			Saldo:         v.Saldo,
+			Waktu:         v.CreatedAt,
+		})
 	}
 	return
 }

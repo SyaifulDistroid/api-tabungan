@@ -26,4 +26,26 @@ const (
 			saldo
 		 FROM tb_rekening
 	`
+
+	CreateHistoryQuery = `
+		INSERT INTO tb_history(
+			no_rekening, 
+			kode_transaksi, 
+			nominal, 
+			saldo, 
+			created_by)
+		VALUES ($1, $2, $3, $4, $5)
+	`
+
+	GetHistoryQuery = `
+		SELECT id,
+			no_rekening, 
+			kode_transaksi, 
+			nominal, 
+			saldo,
+			created_at
+		 FROM tb_history
+		 WHERE no_rekening = $1
+		 ORDER BY created_at DESC;
+	`
 )

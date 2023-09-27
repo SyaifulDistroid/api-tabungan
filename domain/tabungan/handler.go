@@ -115,5 +115,18 @@ func (handler tabunganHandler) BalanceHandler(c *fiber.Ctx) error {
 }
 
 func (handler tabunganHandler) HistoryHandler(c *fiber.Ctx) error {
-	return nil
+	ctx := c.UserContext()
+
+	norek := c.Params("no_rekening")
+	if norek == "" || norek == "0" {
+		err := Error.New(ctx, constant.ErrInvalidRequest, constant.ErrInvalidRequest, fmt.Errorf(constant.ErrInvalidRequest))
+		return response.ResponseErrorWithContext(ctx, err)
+	}
+
+	resp, err := handler.tabunganFeature.HistoryFeature(ctx, norek)
+	if err != nil {
+		return response.ResponseErrorWithContext(ctx, err)
+	}
+
+	return response.ResponseOK(c, constant.SUCCESS, resp)
 }
