@@ -31,5 +31,10 @@ func routerGroupV1(app *fiber.App, handler handler) {
 				log.Get("/all", handler.healthHandler.GetLogData)
 			}
 		}
+
+		tabungan := v1.Group("/tabungan")
+		{
+			tabungan.Post("/daftar", handler.tabunganHandler.RegisterHandler)
+		}
 	}
 }
